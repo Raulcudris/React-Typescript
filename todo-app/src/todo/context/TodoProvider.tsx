@@ -28,14 +28,20 @@ interface props {
 
 export const TodoProvider = ({ children }: props ) => {
 
-  const [todoState, dispatch] = useReducer(TodoReducer, INITIAL_STATE)
+  const [todoState, dispatch] = useReducer(TodoReducer, INITIAL_STATE);
+  
+  const toggleTodo = ( id: string ) =>{
+      dispatch({ type:'toggleTodo', payload:{ id } })
+  }
 
   return (
-    <TodoContext.Provider value = {{ todoState }} >
+    <TodoContext.Provider value = {{
+       todoState ,
+      toggleTodo
+     }} >
         { children }
     </TodoContext.Provider>
   )
 }
 
 
-//https://youtu.be/8HE657KssxE?list=PLCKuOXG0bPi26-eawizqyLOgM7j66H_4M&t=1879
